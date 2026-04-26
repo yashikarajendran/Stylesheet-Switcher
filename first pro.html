@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stylesheet Switcher</title>
+
+  <!-- Default stylesheet -->
+  <link id="themeStylesheet" rel="stylesheet" href="css/light.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    select {
+      padding: 5px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Stylesheet Switcher</h1>
+
+<label for="styleSwitcher">Choose Theme:</label>
+<select id="styleSwitcher">
+  <option value="css/light.css">Light</option>
+  <option value="css/dark.css">Dark</option>
+  <option value="css/contrast.css">High Contrast</option>
+</select>
+
+<script>
+  const switcher = document.getElementById("styleSwitcher");
+  const themeLink = document.getElementById("themeStylesheet");
+
+  switcher.addEventListener("change", function () {
+    themeLink.href = this.value;
+    // Optionally: save to localStorage
+    localStorage.setItem("selectedTheme", this.value);
+  });
+
+  // Optional: load saved theme on page load
+  const savedTheme = localStorage.getItem("selectedTheme");
+  if (savedTheme) {
+    themeLink.href = savedTheme;
+    switcher.value = savedTheme;
+  }
+</script>
+
+</body>
+</html>
